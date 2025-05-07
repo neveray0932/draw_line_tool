@@ -27,6 +27,3 @@ npm run dev
 ## 技術棧
 - Vue 3
 - Vite
-
----
-如有任何問題，歡迎提 issue 或聯絡作者。
