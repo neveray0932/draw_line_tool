@@ -1,5 +1,5 @@
 {
-  "name": "draw-pay-line",
+  "name": "reel_tools",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.13",
-    "xlsx": "^0.18.5"
+    "@flaticon/flaticon-uicons": "^3.3.1",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
