@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import DrawingBoard from './DrawingBoard.vue'
-import * as XLSX from 'xlsx'
 
 const rows = ref(3)
 const cols = ref(5)
@@ -35,27 +34,6 @@ const resetAllBoards = () => {
 
 const formatIndexes = (arr) => {
   return '[\n' + arr.map(row => '  [' + row.join(', ') + ']').join(',\n') + '\n]'
-}
-
-const exportToExcel = () => {
-  const wb = XLSX.utils.book_new()
-  boardRefs.value.forEach((ref, idx) => {
-    const colorMatrix = ref?.getCellColorMatrix?.() || []
-    const ws = XLSX.utils.aoa_to_sheet(colorMatrix.map(row => row.map(() => '')))
-    colorMatrix.forEach((row, r) => {
-      row.forEach((color, c) => {
-        if (color) {
-          const cellAddr = XLSX.utils.encode_cell({ r, c })
-          if (!ws[cellAddr]) ws[cellAddr] = { t: 's', v: '' }
-          ws[cellAddr].s = {
-            fill: { patternType: 'solid', fgColor: { rgb: color.replace('#', '').toUpperCase() } }
-          }
-        }
-      })
-    })
-    XLSX.utils.book_append_sheet(wb, ws, `Board${idx + 1}`)
-  })
-  XLSX.writeFile(wb, 'boards.xlsx', { cellStyles: true })
 }
 </script>
 
